@@ -1,0 +1,16 @@
+filebeat.inputs:
+  - type: log
+    enabled: true
+    paths:
+      - ${HOME}/.server_logs/logger.logs
+    json.message_key: "message"
+    json.keys_under_root: true
+    json.overwrite_keys: true
+setup.ilm.enabled: false
+setup.template.enabled: false
+output.elasticsearch:
+  hosts: [ "https://search-logging-cluster-mitalnpsdcnhllns5w2psaevrq.ap-south-1.es.amazonaws.com:443" ]
+  index: content-tool-service-staging
+  username: "logging-user"
+  password: "WSkGDvHw1b$U"
+logging.level: error

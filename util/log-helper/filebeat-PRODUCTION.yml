@@ -1,0 +1,16 @@
+filebeat.inputs:
+  - type: log
+    enabled: true
+    paths:
+      - ${HOME}/.server_logs/logger.logs
+    json.message_key: "message"
+    json.keys_under_root: true
+    json.overwrite_keys: true
+setup.ilm.enabled: false
+setup.template.enabled: false
+output.elasticsearch:
+  hosts: ["http://ec2-43-204-214-160.ap-south-1.compute.amazonaws.com:9200"]
+  index: hypergro-service-production
+  # username: "logging-user"
+  # password: "WSkGDvHw1b$U"
+logging.level: error
