@@ -1,7 +1,7 @@
-class CreateEmbeddingApi {
-    constructor(utility, createEmbeddingLogic) {
+class AiAnalysisApi {
+    constructor(utility, aiAnalysisLogic) {
         this.utility = utility;
-        this.CreateEmbeddingLogic = createEmbeddingLogic;
+        this.aiAnalysisLogic = aiAnalysisLogic;
     }
 
     async handleRequest(req, res) {
@@ -14,18 +14,18 @@ class CreateEmbeddingApi {
                 type: req.body.type
             }
 
-            let [err, response] = await this.utility.invoker(this.CreateEmbeddingLogic.createEmbeddings(reqCtx));
-            if (err) {
+            let [err, response] = await this.utility.invoker(this.aiAnalysisLogic.analyzeVideo(reqCtx));
+            if(err) {
                 return this.utility.sendErrorResponse('Could not create embeddings of the video', err, res);
             }
             return this.utility.writeResponse(null, {
-                msg: 'Successfully Created Embeddings of the video',
+                msg: 'Successfully generated analysis of the video',
                 data: response
             }, res);
-        } catch(error) {
-            return this.utility.sendErrorResponse('Could not create embeddings of the video', error, res);
+        } catch(err) {
+            return this.utility.sendErrorResponse('Internal Server Error', err, res);
         }
     }
 }
 
-module.exports = CreateEmbeddingApi;
+module.exports = AiAnalysisApi;

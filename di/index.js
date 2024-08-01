@@ -32,6 +32,7 @@ container.register({
 container.register('createEmbeddingApi', asClass(require('../api/embedding-service/v1/create-embedding-api'), getScope()));
 container.register('uploadEmbeddingApi', asClass(require('../api/embedding-service/v1/upload-embedding-api'), getScope()));
 container.register('bulkUploadEmbeddingApi', asClass(require('../api/embedding-service/v1/bulk-upload-embedding-api'), getScope()));
+container.register('aiAnalysisApi', asClass(require('../api/embedding-service/v1/ai-analysis-api'), getScope()));
 
 
 
@@ -39,7 +40,7 @@ container.register('bulkUploadEmbeddingApi', asClass(require('../api/embedding-s
 container.register('createEmbeddingLogic', asClass(require('../logic/embedding-logic/create-embedding-logic'), getScope()));
 container.register('uploadEmbeddingLogic', asClass(require('../logic/embedding-logic/upload-embedding-logic'), getScope()));
 container.register('bulkUploadEmbeddingLogic', asClass(require('../logic/embedding-logic/bulk-upload-embedding-logic'), getScope()));
-
+container.register('aiAnalysisLogic', asClass(require('../logic/embedding-logic/ai-analysis-logic'), getScope()));
 
 
 //------------------------------------ Service --------------------------------------------------------------------------------------------------

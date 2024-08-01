@@ -18,4 +18,8 @@ router.post('/embeddings/bulk/upload', upload.single('file'), (req, res, next) =
     req.container.resolve('bulkUploadEmbeddingApi').handleRequest(req, res).catch(next);
 });
 
+router.post('/embeddings/video/analysis', upload.single('file'), (req, res, next) => {
+    req.container.resolve('aiAnalysisApi').handleRequest(req, res).catch(next);
+})
+
 module.exports = router;

@@ -56,7 +56,6 @@ class GoogleEmbeddingService {
     }
 
     async generateVideoAnalysis(base64EncodedVideo, prompt, mimeType){
-        console.log('prompt', prompt);
         const {geminiToken} = await this.getAuthenticatedClient();
         const reqBody = {
             contents: [
@@ -76,7 +75,6 @@ class GoogleEmbeddingService {
                 }
             ],
         }
-        console.log('reqBody', reqBody);
         const options= {
             reqSetting: {
                 srvConfig: this.endpoint.srvConfig,
