@@ -3,7 +3,7 @@ const _ = require('lodash');
 const jwt = require('jsonwebtoken');
 const { v4: uuid, v5: uuidv5, validate: uuidValidate } = require('uuid');
 const bcrypt = require('bcrypt');
-const HashIds = require('hashids/cjs');
+//const HashIds = require('hashids/cjs');
 const crypto = require('crypto');
 const { jsonrepair } = require('jsonrepair');
 const short = require('short-uuid');
@@ -80,11 +80,11 @@ class Utility {
 	 * @param constants
 	 * @param config
 	 */
-	constructor(constants, config) {
-		this.constants = constants;
+	constructor( config) {
+		//this.constants = constants;
 		this.config = config;
 		this.UUID_V5_NAMESAPCE = 'eca1d2f0-9c32-41d6-b9e0-087b82cd98d5';
-		this.hashIds = new HashIds(this.config.envConf?.salt);
+		//this.hashIds = new HashIds(this.config.envConf?.salt);
 
 		this.getDomainName = getDomainName;
 		this.getHostName = getHostName;

@@ -47,7 +47,7 @@ class Http {
 	 * @param logger
 	 * @param utility {Utility}
 	 */
-	constructor(callerName, logger, utility) {
+	constructor(callerName, utility) {
 		this.callerName = callerName;
 		this.axios = axiosDefault.create({
 			timeout: 10000,
@@ -62,7 +62,7 @@ class Http {
 			validateStatus: (status) => status === httpConstants.HTTP_STATUS_OK,
 			headers: { 'X-GRO-CALLER': this.callerName }
 		});
-		this.logger = logger;
+		//this.logger = logger;
 		this.utility = utility;
 	}
 
@@ -123,9 +123,6 @@ class Http {
 	 */
 	async request({ reqSetting, method, headers, queryParams, body, agent, timeout, validStatus = [ 200 ], paramsSerializer, auth } = {}) {
 		const url = await this._parseRequestURL(reqSetting);
-
-		// console.log('HTTP CALL', url, queryParams);
-
 		return await this.requestWithoutSRV({ method, url, headers, queryParams, body, agent, timeout, paramsSerializer, validStatus, auth });
 	}
 
@@ -161,10 +158,10 @@ class Http {
 				response: JSON.stringify(_.get(err, 'response.data', {}))
 			};
 
-			this.logger.error(`Failed HTTP Request to url ${url} with statusCode ${_.get(err, 'response.status')}`, {
-				err, errCtx, queryParams,
-				headers, body
-			});
+			// this.logger.error(`Failed HTTP Request to url ${url} with statusCode ${_.get(err, 'response.status')}`, {
+			// 	err, errCtx, queryParams,
+			// 	headers, body
+			// });
 
 			return Promise.reject(new HttpError(errorObj, errCtx));
 		});
