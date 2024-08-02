@@ -11,7 +11,7 @@ class AiAnalysisLogic {
         const {videoFile, type} = reqCtx;
         const buffer = videoFile.buffer;
 
-        const truncatedVideoBuffer = await this.uploadEmbeddingLogic.truncateVideo(buffer, 10);
+        const truncatedVideoBuffer = await this.uploadEmbeddingLogic.truncateVideo(buffer, 5);
         const prompt = await this.generateAnalysisPrompt(type);
 
         const responseAnalysis = await this.googleEmbeddingService.generateVideoAnalysis(truncatedVideoBuffer, prompt, videoFile.mimetype);
